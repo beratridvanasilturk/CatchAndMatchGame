@@ -11,6 +11,7 @@ import Foundation
 class CardModel {
     
     func getCards() -> [Card] {
+        
         // Declare an array to store generated cards
         var generatedCardsArray = [Card]()
         
@@ -19,10 +20,10 @@ class CardModel {
             
             // Getting a random number
             let randomNumber = arc4random_uniform(13) + 1
+            
+            print("Generated random number is: \(randomNumber)")
+            
             // Created first card object
-            
-            print(randomNumber)
-            
             let cardOne = Card()
             cardOne.imageName = "card\(randomNumber)"
             generatedCardsArray.append(cardOne)

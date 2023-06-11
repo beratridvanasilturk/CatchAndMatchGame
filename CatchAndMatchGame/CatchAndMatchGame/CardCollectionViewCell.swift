@@ -10,6 +10,29 @@ import UIKit
 class CardCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet var frontImageView: UIImageView!
+    
     @IBOutlet var backImageView: UIImageView!
+    
+    var card: Card?
+    
+    func setCard(_ card: Card) {
+        
+        self.card = card
+        
+        frontImageView.image = UIImage(named: card.imageName)
+    }
+    
+    func flip() {
+      
+        // .showHideTransitionViews gives us just hiding the card, not remove.
+        UIView.transition(from: backImageView, to: frontImageView, duration: 0.3, options: [.transitionFlipFromLeft, .showHideTransitionViews])
+        
+    }
+    
+    func flipBack() {
+        
+//        UIView.transition(from: <#T##UIView#>, to: <#T##UIView#>, duration: <#T##TimeInterval#>)
+        
+    }
     
 }
