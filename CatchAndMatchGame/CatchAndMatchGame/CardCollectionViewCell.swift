@@ -20,6 +20,18 @@ class CardCollectionViewCell: UICollectionViewCell {
         self.card = card
         
         frontImageView.image = UIImage(named: card.imageName)
+        
+        // Look at the card status (front or back side)
+        if card.isFlipped == true {
+            
+            UIView.transition(from: backImageView, to: frontImageView, duration: 0, options: [.transitionFlipFromLeft, .showHideTransitionViews])
+            
+        } else {
+            
+            UIView.transition(from: frontImageView, to: backImageView, duration: 0, options: [.transitionFlipFromRight, .showHideTransitionViews])
+            
+        }
+        
     }
     
     func flip() {
