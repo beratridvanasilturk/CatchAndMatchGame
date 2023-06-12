@@ -28,7 +28,7 @@ class CardCollectionViewCell: UICollectionViewCell {
             
         } else {
             
-            UIView.transition(from: frontImageView, to: backImageView, duration: 0, options: [.transitionFlipFromRight, .showHideTransitionViews])
+            UIView.transition(from: frontImageView, to: backImageView, duration: 0, options: [.transitionFlipFromRight, .showHideTransitionViews ])
             
         }
         
@@ -44,6 +44,15 @@ class CardCollectionViewCell: UICollectionViewCell {
     func flipBack() {
         
         UIView.transition(from: frontImageView, to: backImageView, duration: 0.5, options: [.transitionFlipFromRight, .showHideTransitionViews])
+        
+    }
+    
+    func removeCards() {
+        
+        // TODO: Add Animation
+        
+        frontImageView.alpha = 0
+        backImageView.alpha = 0
         
     }
     
