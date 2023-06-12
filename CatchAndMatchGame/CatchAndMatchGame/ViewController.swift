@@ -69,12 +69,13 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                 
             } else {
                 
-                // SECOND CARD PART WILL ADD
+                // If flipped card is second card
+                // Do matching logic
+                checkForMatches(indexPath)
                 
             }
             
         } else {
-            
             
         }
         
@@ -102,7 +103,11 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             
         } else {
             
+            cardOne.isFlipped = false
+            cardTwo.isFlipped = false
             
+            cardOneCell?.flipBack()
+            cardTwoCell?.flipBack()
             
         }
         
