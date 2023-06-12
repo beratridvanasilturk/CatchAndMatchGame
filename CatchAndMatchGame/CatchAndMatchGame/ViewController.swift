@@ -16,6 +16,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     var cardModel = CardModel()
     var cardArray = [Card]()
+    var firstFlippedCardIndex: IndexPath?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,13 +63,52 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             // Set the card status
             card.isFlipped = true
             
+            if firstFlippedCardIndex == nil {
+                
+                firstFlippedCardIndex = indexPath
+                
+            } else {
+                
+                // SECOND CARD PART WILL ADD
+                
+            }
+            
         } else {
             
-            // Flip the card back
-            cell.flipBack()
             
-            card.isFlipped = false
         }
         
+    } // End the didSelectItem Class
+    
+    // MARK - Game Logic Methods
+    
+    func checkForMatches(_ secondFlippedCardIndex: IndexPath) {
+
+        // Get the cells for the two cards that were removed
+        let cardOneCell = collectionView.cellForItem(at: firstFlippedCardIndex!) as? CardCollectionViewCell
+        
+        let cardTwoCell = collectionView.cellForItem(at: secondFlippedCardIndex) as? CardCollectionViewCell
+        
+        let cardOne = cardArray[firstFlippedCardIndex!.row]
+        let cardTwo = cardArray[secondFlippedCardIndex.row]
+        
+        if cardOne.imageName == cardTwo.imageName {
+            
+            cardOne.isMatched = true
+            cardTwo.isMatched = true
+            
+            cardOneCell?.removeCards()
+            cardTwoCell?.removeCards()
+            
+        } else {
+            
+            
+            
+        }
+        
+        firstFlippedCardIndex = nil
+        
     }
-}
+    
+    
+} // End the ViewController Class
