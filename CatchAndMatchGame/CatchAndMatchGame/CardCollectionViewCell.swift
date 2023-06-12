@@ -19,6 +19,19 @@ class CardCollectionViewCell: UICollectionViewCell {
         
         self.card = card
         
+        // If cards allready matched do the image view to transparent
+        if card.isMatched == true {
+            backImageView.alpha = 0
+            frontImageView.alpha = 0
+        
+        // If cards doesn't allready matched do the image view to visible
+        } else {
+            backImageView.alpha = 1
+            frontImageView.alpha = 1
+            
+            return
+        }
+        
         frontImageView.image = UIImage(named: card.imageName)
         
         // Look at the card status (front or back side)
@@ -56,6 +69,11 @@ class CardCollectionViewCell: UICollectionViewCell {
         // TODO: Add Animation
         
         frontImageView.alpha = 0
+        
+        UIView.animate(withDuration: 0.4, delay: 0.4, options: .curveEaseOut, animations: {
+            
+            self.frontImageView.alpha = 0
+        })
         backImageView.alpha = 0
         
     }
