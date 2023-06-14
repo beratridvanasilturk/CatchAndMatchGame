@@ -8,15 +8,15 @@
 import UIKit
 
 class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
-
     
-    
-    
+    @IBOutlet var timeLabel: UILabel!
     @IBOutlet var collectionView: UICollectionView!
     
     var cardModel = CardModel()
     var cardArray = [Card]()
     var firstFlippedCardIndex: IndexPath?
+    var timer: Timer?
+    var seconds: Double = 10 * 100 // 10 seconds
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +24,25 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         collectionView.dataSource = self
         collectionView.delegate = self
         cardArray = cardModel.getCards()
+        
+        // Create timer
+        timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(timeIsUp), userInfo: nil, repeats: true)
     }
+    
+    // MARK - Timer Methods
+    
+    @objc func timeIsUp() {
+        
+        seconds -= 1
+        
+        // Convert the seconds
+        let convertedSeconds = String(format: "%.2f", seconds/100)
+        
+        // Updated UI every seconds
+        timeLabel.text = "Time remaining \(convertedSeconds)"
+        
+    }
+    
     // MARK - UICollectionView Protocol Methods
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -64,6 +82,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             card.isFlipped = true
             
             if firstFlippedCardIndex == nil {
+                
+                
                 
                 firstFlippedCardIndex = indexPath
                 
