@@ -21,15 +21,16 @@ class CardCollectionViewCell: UICollectionViewCell {
         
         // If cards allready matched do the image view to transparent
         if card.isMatched == true {
+            
             backImageView.alpha = 0
             frontImageView.alpha = 0
+            
+            return
         
         // If cards doesn't allready matched do the image view to visible
         } else {
             backImageView.alpha = 1
             frontImageView.alpha = 1
-            
-            return
         }
         
         frontImageView.image = UIImage(named: card.imageName)
