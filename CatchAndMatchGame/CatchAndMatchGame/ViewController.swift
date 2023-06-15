@@ -39,7 +39,12 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         let convertedSeconds = String(format: "%.2f", seconds/100)
         
         // Updated UI every seconds
-        timeLabel.text = "Time remaining \(convertedSeconds)"
+        timeLabel.text = "Time remaining :  \(convertedSeconds)"
+        
+        // Timer shoul not be smaller than 0
+        if seconds <= 0 {
+            timer?.invalidate()
+        }
         
     }
     
