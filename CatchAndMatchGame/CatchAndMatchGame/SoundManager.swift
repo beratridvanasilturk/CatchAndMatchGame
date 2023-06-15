@@ -43,7 +43,17 @@ class SoundManager {
         // Create a URL object from this string path
         let soundURL = URL(fileURLWithPath: bundlePath!)
         
-        // Create audio player object
-        
+        do {
+            // Create audio player object
+            audioPlayer = try AVAudioPlayer(contentsOf: soundURL)
+            
+            audioPlayer?.play()
+        }
+        catch {
+            // Couldn't create audio player object
+            print("Couldn't create the audio player object for sound file \(soundName)")
+            
+            
+        }
     }
 }
