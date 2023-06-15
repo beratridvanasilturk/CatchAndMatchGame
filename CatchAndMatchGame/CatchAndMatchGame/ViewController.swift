@@ -46,7 +46,13 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         // Timer shoul not be smaller than 0
         if seconds <= 0 {
+            
+            // Stop the timer
             timer?.invalidate()
+            timeLabel.backgroundColor = .systemOrange
+            
+            // Check if any cards uncmached
+            checkGameEnded()
         }
         
     }
@@ -112,7 +118,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     // MARK - Game Logic Methods
     
     func checkForMatches(_ secondFlippedCardIndex: IndexPath) {
-
+        
         // Get the cells for the two cards that were removed
         let cardOneCell = collectionView.cellForItem(at: firstFlippedCardIndex!) as? CardCollectionViewCell
         
@@ -128,6 +134,9 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             
             cardOneCell?.removeCards()
             cardTwoCell?.removeCards()
+            
+            // Check if there are any unmached cards
+            checkGameEnded()
             
         } else {
             
@@ -146,6 +155,58 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         // Reset the property that tracks the first card flipped
         firstFlippedCardIndex = nil
+        
+    }
+    
+    func checkGameEnded() {
+        
+        var gamerWon = true
+        
+        for card in cardArray {
+            
+            if card.isMatched == false {
+                gamerWon = false
+            }
+        }
+        // Pop-up properties
+        var title = ""
+        var message = ""
+        
+        // If no unmached cards, gamer is won and stop the timer
+        
+        if gamerWon == true {
+            if seconds > 0 {
+                
+                timer?.invalidate()
+            }
+            
+            title = "Congratulations!"
+            message = "You are winner!"
+            
+        } else {
+            
+            // If has any cards, check timer left
+            if seconds > 0 {
+                return
+            }
+            
+                title = "GAME OVER"
+                message = "Try Again!"
+            
+        }
+        
+        // Show won or lost messaging
+        getAlert(title, message)
+    }
+    
+    func getAlert(_ title: String, _ message: String) {
+        
+        let popUpAlert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let alertAction = UIAlertAction(title: "OK", style: .default)
+        
+        popUpAlert.addAction(alertAction)
+        
+        present(popUpAlert, animated: true)
         
     }
     
