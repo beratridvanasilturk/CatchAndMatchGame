@@ -27,6 +27,9 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         // Create timer
         timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(timeIsUp), userInfo: nil, repeats: true)
+        
+        // This helps to you timer's flow during the scrolling.
+        RunLoop.main.add(timer!, forMode: .common)
     }
     
     // MARK - Timer Methods
