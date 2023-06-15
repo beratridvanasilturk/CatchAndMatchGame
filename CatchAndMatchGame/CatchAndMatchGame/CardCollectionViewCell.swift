@@ -68,14 +68,14 @@ class CardCollectionViewCell: UICollectionViewCell {
         
         // TODO: Add Animation
         
-        frontImageView.alpha = 0
         
-        UIView.animate(withDuration: 0.8, delay: 0.8, options: .curveEaseOut, animations: {
+        
+        UIView.animate(withDuration: 0.5, delay: 0.8, options: .curveEaseOut, animations: {
             
             self.frontImageView.alpha = 0
         })
+        frontImageView.alpha = 0
         backImageView.alpha = 0
         
     }
-    
 }

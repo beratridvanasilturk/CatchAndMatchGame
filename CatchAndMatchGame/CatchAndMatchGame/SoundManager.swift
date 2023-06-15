@@ -53,7 +53,6 @@ class SoundManager {
             // Couldn't create audio player object
             print("Couldn't create the audio player object for sound file \(soundName)")
             
-            
         }
     }
 }
