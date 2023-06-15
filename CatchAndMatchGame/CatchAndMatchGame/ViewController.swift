@@ -16,7 +16,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     var cardArray = [Card]()
     var firstFlippedCardIndex: IndexPath?
     var timer: Timer?
-    var seconds: Double = 10 * 100 // 10 seconds
+    var seconds: Double = 25 * 100 // 25 seconds
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +31,10 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         // This helps to you timer's flow during the scrolling.
         RunLoop.main.add(timer!, forMode: .common)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        SoundManager.playSound(.shuffle)
     }
     
     // MARK - Timer Methods
@@ -92,12 +97,13 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             // Flip the card
             cell.flip()
             
+            // Play the flip sound
+            SoundManager.playSound(.flip)
+            
             // Set the card status
             card.isFlipped = true
             
             if firstFlippedCardIndex == nil {
-                
-                
                 
                 firstFlippedCardIndex = indexPath
                 
@@ -108,9 +114,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                 checkForMatches(indexPath)
                 
             }
-            
-        } else {
-            
         }
         
     } // End the didSelectItem Class
@@ -134,6 +137,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         if cardOne.imageName == cardTwo.imageName {
             
+            SoundManager.playSound(.success)
+            
             cardOne.isMatched = true
             cardTwo.isMatched = true
             
@@ -144,6 +149,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             checkGameEnded()
             
         } else {
+            
+            SoundManager.playSound(.fail)
             
             cardOne.isFlipped = false
             cardTwo.isFlipped = false

@@ -10,7 +10,7 @@ import AVFoundation
 
 class SoundManager {
     
-    var audioPlayer: AVAudioPlayer?
+    static var audioPlayer: AVAudioPlayer?
     
     enum Sounds {
         case flip
@@ -19,7 +19,7 @@ class SoundManager {
         case fail
     }
     
-    func playSound(_ selectSounds: Sounds) {
+        static func playSound(_ selectSounds: Sounds) {
         
         var soundName = ""
         

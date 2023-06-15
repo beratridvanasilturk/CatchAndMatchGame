@@ -59,8 +59,7 @@ class CardCollectionViewCell: UICollectionViewCell {
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
         
-            
-            UIView.transition(from: self.frontImageView, to: self.backImageView, duration: 0.5, options: [.transitionFlipFromRight, .showHideTransitionViews])
+            UIView.transition(from: self.frontImageView, to: self.backImageView, duration: 0.6, options: [.transitionFlipFromRight, .showHideTransitionViews])
                
         }
     }
@@ -71,7 +70,7 @@ class CardCollectionViewCell: UICollectionViewCell {
         
         frontImageView.alpha = 0
         
-        UIView.animate(withDuration: 0.4, delay: 0.4, options: .curveEaseOut, animations: {
+        UIView.animate(withDuration: 0.8, delay: 0.8, options: .curveEaseOut, animations: {
             
             self.frontImageView.alpha = 0
         })
