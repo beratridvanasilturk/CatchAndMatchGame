@@ -119,6 +119,11 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     func checkForMatches(_ secondFlippedCardIndex: IndexPath) {
         
+        // This method will blocks click the cards when seconds over.
+        if seconds <= 0 {
+            return
+        }
+        
         // Get the cells for the two cards that were removed
         let cardOneCell = collectionView.cellForItem(at: firstFlippedCardIndex!) as? CardCollectionViewCell
         
