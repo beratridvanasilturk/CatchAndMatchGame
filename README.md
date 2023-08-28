@@ -1,4 +1,4 @@
-# CatchAndMatchGame
+# Catch & Match Game
 
 My main goal in designing this matching game was to learn how to submit apps to the Apple Store. I used AVFoundation for audio feedback into the Collection View Cells. I have completed this project and now I am trying to submit an app to the AppStore.
 
